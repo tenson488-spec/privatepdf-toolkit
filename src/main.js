@@ -30,74 +30,81 @@ app.addEventListener("click", (event) => {
 function navbar() {
   return `
     <header class="navbar">
-      <button class="brand" data-action="home" type="button">
-        <span class="brand-mark">P</span>
-        <span>PrivatePDF</span>
-      </button>
-      <button class="nav-home" data-action="home" type="button">Home</button>
+      <div class="nav-inner">
+        <button class="brand" data-action="home" type="button" aria-label="PrivatePDF home">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4.5 4.5V20a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M14 3.5V8h4.5M8.5 13h7M8.5 17h5"/></svg></span>
+          <span>Private<span class="brand-accent">PDF</span></span>
+        </button>
+        <div class="nav-actions">
+          <span class="nav-privacy"><span class="privacy-dot"></span> Runs in your browser</span>
+          <button class="nav-home" data-action="home" type="button">All tools <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
     </header>
+  `;
+}
+
+function footer() {
+  return `
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <strong>PrivatePDF</strong>
+          <span>Simple tools. Your documents stay yours.</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="/about.html">About</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/privacy.html">Privacy policy</a>
+        </nav>
+        <p class="copyright">© ${new Date().getFullYear()} PrivatePDF</p>
+      </div>
+    </footer>
   `;
 }
 
 function renderHome() {
   app.innerHTML = `
     ${navbar()}
-    <main class="page">
-      <section class="hero">
-        <span class="eyebrow">LOCAL BROWSER PROCESSING</span>
-        <h1>Useful PDF tools without uploading your files</h1>
-        <p>
-          Merge, extract, rotate and organize PDF documents directly on your device.
-          No account, server upload or cloud storage is required.
-        </p>
-        <div class="trust-row">
-          <span>✓ Files stay on your device</span>
-          <span>✓ No account required</span>
-          <span>✓ Free browser tools</span>
+    <main>
+      <section class="hero-wrap">
+        <div class="hero page">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="privacy-dot"></span> PRIVACY-FIRST PDF WORKSPACE</div>
+            <h1>Everyday PDF tools.<br/><span>Extraordinary simplicity.</span></h1>
+            <p class="hero-description">Merge, extract, rotate, and organize PDFs in seconds. Everything runs right in your browser — your files aren't sent to a processing server.</p>
+            <div class="hero-buttons">
+              <a class="hero-cta" href="#tools">Explore all tools <span aria-hidden="true">↗</span></a>
+              <span class="hero-free">Free to use · No account needed</span>
+            </div>
+            <div class="trust-row"><span>✓ Private by design</span><span>✓ No sign-up</span><span>✓ Instant downloads</span></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit art-orbit-one"></div><div class="art-orbit art-orbit-two"></div>
+            <div class="art-document art-document-back"><div class="art-topline"></div><i></i><i></i><i></i></div>
+            <div class="art-document art-document-front"><div class="art-filetype">PDF</div><div class="art-line art-line-long"></div><div class="art-line"></div><div class="art-line art-line-short"></div><div class="art-doc-footer">PRIVATE BY DESIGN <span>✓</span></div></div>
+            <div class="art-tag art-tag-top">✦ Simple & secure</div><div class="art-tag art-tag-bottom">✓ Ready to download</div>
+          </div>
         </div>
       </section>
-
-      <section>
-        <div class="section-heading">
-          <h2>PDF tools</h2>
-          <p>Select a tool to begin.</p>
-        </div>
-
+      <section class="tools-section page" id="tools">
+        <div class="section-top"><div><span class="section-kicker">THE TOOLKIT</span><h2>What would you like to do?</h2><p>Choose a tool. Get it done. Keep moving.</p></div><span class="tool-count">06 FREE TOOLS</span></div>
         <div class="tool-grid">
-          ${tools.map((tool) => `
+          ${tools.map((tool, index) => `
             <button class="tool-card" data-tool="${tool.id}" type="button">
-              <span class="tool-icon">${tool.icon}</span>
-              <span>
-                <strong>${tool.title}</strong>
-                <small>${tool.description}</small>
-              </span>
-              <span class="arrow">→</span>
-            </button>
-          `).join("")}
+              <span class="tool-card-top"><span class="tool-icon tool-icon-${tool.id}">${tool.icon}</span><span class="tool-number">0${index + 1}</span></span>
+              <span class="tool-card-bottom"><span><strong>${tool.title}</strong><small>${tool.description}</small></span><span class="card-arrow" aria-hidden="true">↗</span></span>
+            </button>`).join("")}
         </div>
       </section>
-
-      <section class="privacy-panel">
-        <div>
-          <h2>Designed for privacy</h2>
-          <p>
-            PDF processing happens in your browser memory. This website does not
-            send your selected documents to a processing server.
-          </p>
-        </div>
+      <section class="benefits-section page" aria-label="Why use PrivatePDF">
+        <div class="benefit"><span class="benefit-icon">♧</span><h3>Privacy comes first</h3><p>Documents are processed locally in your browser, not uploaded for processing.</p></div>
+        <div class="benefit"><span class="benefit-icon">✧</span><h3>Less friction</h3><p>No registration, no confusing menus. Just straightforward tools.</p></div>
+        <div class="benefit"><span class="benefit-icon">↯</span><h3>Ready when you are</h3><p>Choose your files, make your changes, and save the result.</p></div>
       </section>
+      <section class="privacy-banner page"><div><span class="section-kicker">YOUR FILES, YOUR CONTROL</span><h2>A better way to work with PDFs.</h2><p>With browser-based document processing, your selected files stay on your device while you work.</p></div><a href="/privacy.html">Read our privacy policy <span aria-hidden="true">↗</span></a></section>
     </main>
-
-    <footer>
-      <p>PrivatePDF · Browser-based PDF utilities</p>
-
-      <nav aria-label="Footer navigation">
-  <a href="/about.html">About</a>
-  <a href="/contact.html">Contact</a>
-  <a href="/privacy.html">Privacy Policy</a>
-</nav>
-
-    </footer>
+    ${footer()}
   `;
 }
 
@@ -131,8 +138,9 @@ function toolShell(title, description, controls) {
         <p class="status" id="status" role="status"></p>
       </section>
 
-      <p class="local-note">🔒 Files are processed locally and are not uploaded.</p>
+      <p class="local-note">🔒 Files are processed locally in your browser.</p>
     </main>
+    ${footer()}
   `;
 }
 
@@ -154,18 +162,27 @@ function uploadMarkup({ id, accept, multiple = false, label }) {
   `;
 }
 
+
+
 function renderMerge() {
   toolShell(
     "Merge PDF",
-    "Combine two or more PDFs in the order selected.",
+    "Add PDFs, drag to reorder them, then merge.",
     `
       ${uploadMarkup({
         id: "merge-files",
         accept: "application/pdf",
         multiple: true,
-        label: "Choose PDF files",
+        label: "Add PDF files",
       })}
-      <button class="primary-button" id="run-merge" type="button" disabled>
+
+      <p class="merge-hint">
+        Drag files to reorder, or use the arrow buttons.
+        Files will merge from top to bottom.
+      </p>
+
+      <button class="primary-button"
+        id="run-merge" type="button" disabled>
         Merge PDFs
       </button>
     `
@@ -173,29 +190,162 @@ function renderMerge() {
 
   const input = document.querySelector("#merge-files");
   const button = document.querySelector("#run-merge");
+  const container = document.querySelector("#selected-files");
+
+  let selectedFiles = [];
+  let draggingIndex = null;
+
+  function moveFile(from, to) {
+    if (
+      from === null ||
+      from < 0 ||
+      to < 0 ||
+      from >= selectedFiles.length ||
+      to >= selectedFiles.length ||
+      from === to
+    ) return;
+
+    const [file] = selectedFiles.splice(from, 1);
+    selectedFiles.splice(to, 0, file);
+    updateFileList();
+  }
+
+  function updateFileList() {
+    container.replaceChildren();
+
+    selectedFiles.forEach((file, index) => {
+      const row = document.createElement("div");
+      row.className = "merge-file-row";
+      row.draggable = true;
+
+      const handle = document.createElement("span");
+      handle.className = "drag-handle";
+      handle.textContent = "☰";
+      handle.title = "Drag to reorder";
+      handle.setAttribute("aria-hidden", "true");
+
+      const name = document.createElement("span");
+      name.className = "merge-file-name";
+      name.textContent = `${index + 1}. ${file.name}`;
+
+      const up = document.createElement("button");
+      up.type = "button";
+      up.className = "merge-order-btn";
+      up.textContent = "↑";
+      up.title = "Move up";
+      up.setAttribute("aria-label", `Move ${file.name} up`);
+      up.disabled = index === 0;
+      up.addEventListener("click", () => {
+        moveFile(index, index - 1);
+      });
+
+      const down = document.createElement("button");
+      down.type = "button";
+      down.className = "merge-order-btn";
+      down.textContent = "↓";
+      down.title = "Move down";
+      down.setAttribute("aria-label", `Move ${file.name} down`);
+      down.disabled = index === selectedFiles.length - 1;
+      down.addEventListener("click", () => {
+        moveFile(index, index + 1);
+      });
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "remove-file";
+      remove.textContent = "Remove";
+      remove.setAttribute("aria-label", `Remove ${file.name}`);
+      remove.addEventListener("click", () => {
+        selectedFiles.splice(index, 1);
+        updateFileList();
+      });
+
+      row.addEventListener("dragstart", (event) => {
+        draggingIndex = index;
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", String(index));
+        row.classList.add("dragging");
+      });
+
+      row.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = "move";
+        row.classList.add("drag-over");
+      });
+
+      row.addEventListener("dragleave", () => {
+        row.classList.remove("drag-over");
+      });
+
+      row.addEventListener("drop", (event) => {
+        event.preventDefault();
+        row.classList.remove("drag-over");
+        const from = draggingIndex;
+        draggingIndex = null;
+        moveFile(from, index);
+      });
+
+      row.addEventListener("dragend", () => {
+        draggingIndex = null;
+        document.querySelectorAll(".merge-file-row")
+          .forEach(el => {
+            el.classList.remove("dragging", "drag-over");
+          });
+      });
+
+      row.append(handle, name, up, down, remove);
+      container.appendChild(row);
+    });
+
+    button.disabled = selectedFiles.length < 2;
+    button.textContent = `Merge ${selectedFiles.length} PDFs`;
+
+    if (selectedFiles.length === 1) {
+      setStatus("Add at least one more PDF.");
+    } else {
+      setStatus("");
+    }
+  }
 
   input.addEventListener("change", () => {
-    const files = validPdfFiles(input.files);
-    showFiles(files);
-    button.disabled = files.length < 2;
-    setStatus(files.length === 1 ? "Select at least one more PDF." : "");
+    const newFiles = validPdfFiles(input.files);
+    selectedFiles.push(...newFiles);
+
+    // Allow another selection without losing existing PDFs.
+    input.value = "";
+    updateFileList();
   });
 
   button.addEventListener("click", async () => {
-    const files = validPdfFiles(input.files);
+    if (selectedFiles.length < 2) return;
+
+    // Capture the visible order.
+    const files = [...selectedFiles];
+
     await runTask(button, "Merging PDFs…", async () => {
       const output = await PDFDocument.create();
 
       for (const file of files) {
         const source = await loadPdf(file);
-        const pages = await output.copyPages(source, source.getPageIndices());
-        pages.forEach((page) => output.addPage(page));
+        const pages = await output.copyPages(
+          source,
+          source.getPageIndices()
+        );
+
+        pages.forEach(page => output.addPage(page));
       }
 
-      downloadBytes(await output.save(), "merged.pdf");
+      downloadBytes(
+        await output.save(),
+        "merged.pdf"
+      );
     });
   });
+
+  updateFileList();
 }
+
+
 
 function renderSplit() {
   toolShell(
