@@ -4,7 +4,7 @@ import { PDFDocument, degrees } from "pdf-lib";
 const app = document.querySelector("#app");
 
 const tools = [
-  { id: "merge", icon: "🔗", title: "Merge PhdDF", description: "Combine multiple PDF files into one." },
+  { id: "merge", icon: "🔗", title: "Merge PDF", description: "Combine multiple PDF files into one." },
   { id: "split", icon: "✂️", title: "Extract Pages", description: "Create a new PDF from selected pages." },
   { id: "rotate", icon: "↻", title: "Rotate PDF", description: "Rotate every page in a PDF." },
   { id: "delete", icon: "🗑️", title: "Delete Pages", description: "Remove unwanted pages from a PDF." },
