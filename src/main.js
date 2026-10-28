@@ -90,6 +90,13 @@ function renderHome() {
 
     <footer>
       <p>PrivatePDF · Browser-based PDF utilities</p>
+
+      <nav aria-label="Footer navigation">
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/privacy.html">Privacy Policy</a>
+</nav>
+
     </footer>
   `;
 }
